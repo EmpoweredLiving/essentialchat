@@ -150,21 +150,26 @@ body {
 /* ==== Video Section (Tutorial Page) ==== */
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 35.5%; /* Or your adjusted value for aspect ratio */
     height: 0;
-    overflow: hidden;
-    max-width: 700px; /* Max width of the video player */
-    margin: 0 auto 40px auto;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.07);
+    overflow: hidden; /* Keep this to contain the iframe */
+    max-width: 700px; /* Or your preferred max-width */
+    margin: 0 auto 40px auto; /* Keep for centering and spacing */
+    
+    /* border: 1px solid var(--border-color); /* REMOVED OR COMMENTED OUT */
+    border-radius: 12px; /* You can keep this if you want the iframe corners to be rounded,
+                           but it won't be visible without a border or background */
+    /* box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.07); /* REMOVED OR COMMENTED OUT */
 }
+
 .video-wrapper iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 12px; /* Apply border-radius directly to the iframe if you want rounded corners
+                           on the video player itself */
 }
 
 /* ==== Buttons (General) ==== */
