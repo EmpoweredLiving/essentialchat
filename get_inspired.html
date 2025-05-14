@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Inspired - Essential Chat Resources</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
 </head>
 <body>
     <header class="site-header">
@@ -13,89 +14,119 @@
                 <ul>
                     <li><a href="index.html">Tutorial</a></li>
                     <li><a href="get_inspired.html" class="active">Get Inspired</a></li>
-                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="resources.html">doTerra Resources</a></li>
                     <li><a href="faqs.html">FAQs</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="main-content inspired-page">
+    <main class="main-content inspired-page-v2">
         <div class="container">
             <h1 class="page-title">What Can Essential Chat Help You With?</h1>
+            <p class="page-subtitle">We have you covered - whether it's protocols, oil facts, diffuser recipes, or cleaning tips! Take a look at these examples to spark your own questions!</p>
 
-            <section class="inspiration-section">
-                <div class="intro-text">
-                    <p>Essential Chat has you covered—whether it's protocols, oil facts, diffuser recipes or cleaning tips! Take a look at these top prompts to spark your own questions.</p>
-                </div>
-                <div class="prompt-grid">
-                    <!-- Prompt Group 1 Cards -->
-                    <div class="prompt-card">
-                        <h3>Immune Support</h3>
-                        <p>Boost your defenses naturally.</p>
+            <!-- Featured Prompts Carousel Section -->
+            <section class="featured-prompts-carousel-section">
+                <div class="carousel-container">
+                    <div class="carousel-slides">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide active">
+                            <div class="slide-content">
+                                <h3>"How can I improve my sleep?"</h3>
+                                <p>Explore oils and routines for a more restful night.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Chat can give you recipe ideas</h3>
+                                <p>Give me some recipe ideas using lemon oil.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                             <div class="slide-content">
+                                <h3>What are safe essential oils for kids?</h3>
+                                <p>Learn about gentle oils and proper dilution for children.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 4 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Find natural cleaning solutions with oils</h3>
+                                <p>Find effective, non-toxic recipes for a sparkling home.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 5 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Top uses for oils</h3>
+                                <p>What are the top uses for Marjoram oil?</p>
+                            </div>
+                        </div>
+                        <!-- Slide 6 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Give me a diffuser blend for focus.</h3>
+                                <p>Discover uplifting and clarifying aromas for work or study.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 7 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Get Recommendations</h3>
+                                <p>Which oils are recommended for joint pain or sore muscles?</p>
+                            </div>
+                        </div>
+                        <!-- Slide 8 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Oils aren't just for humans!</h3>
+                                <p>Get safe gentle support for your furry friends.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 9 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Easily explained 'How to's'</h3>
+                                <p>How can I do a 30-day cleanse with doTerra products?</p>
+                            </div>
+                        </div>
+                        <!-- Slide 10 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Explore different topics like Immune Support</h3>
+                                <p>Boost your defenses naturally</p>
+                            </div>
+                        </div>
+                        <!-- Slide 11 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Discover solutions for children</h3>
+                                <p>My baby has colic - what oils are safe and effective?</p>
+                            </div>
+                        </div>
+                        <!-- Slide 12 (Example) -->
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h3>Wellness & Mood</h3>
+                                <p>Find balance - mind & body.</p>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="prompt-card">
-                        <h3>Gut & Respiratory</h3>
-                        <p>Calm inflammation from the inside out.</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>Wellness & Mood</h3>
-                        <p>Find balance—mind & body.</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>Energy & Sleep</h3>
-                        <p>Wake refreshed, rest easy.</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>Recipes & DIY</h3>
-                        <p>Diffusers, cooking & home blends.</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>Pet Care</h3>
-                        <p>Safe, gentle support for furry friends.</p>
+                    <button class="carousel-button prev" aria-label="Previous slide">❮</button>
+                    <button class="carousel-button next" aria-label="Next slide">❯</button>
+                    <div class="carousel-dots">
+                        <!-- Dots will be generated by JavaScript -->
                     </div>
                 </div>
             </section>
-
-    <div class="wave-divider"> <!-- MOVED OUTSIDE .container -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style="display: block; width: 100%; height: auto; max-height:70px;"><path d="M1440,50 C1200,150 1000,0 720,50 C440,100 240,-50 0,50 L0,100 L1440,100 Z" style="fill:var(--casal-100); opacity:0.6;"></path><path d="M1440,60 C1150,180 950,20 720,60 C490,100 290,-40 0,60 L0,100 L1440,100 Z" style="fill:var(--casal-200); opacity:0.4;"></path></svg>
-    </div>
-
-            <section class="inspiration-section">
-                <div class="intro-text">
-                    <p>Feel free to ask your question any way— Essential Chat will understand and offer expert follow-up prompts! Here are some sample questions to get you started.</p>
-                </div>
-                <div class="prompt-grid">
-                    <!-- Prompt Group 2 Cards -->
-                    <div class="prompt-card">
-                        <h3>What Oils</h3>
-                        <p>What essential oils can help with stress, anxiety, or sleep?</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>The Best</h3>
-                        <p>What's the best natural solution for digestive issues?</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>Safety</h3>
-                        <p>My baby has colic—what oils are safe and effective?</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>How To</h3>
-                        <p>How can I do a 30-day cleanse with doTERRA products?</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>Top Uses</h3>
-                        <p>What are the top uses for Marjoram oil?</p>
-                    </div>
-                    <div class="prompt-card">
-                        <h3>Recommendations</h3>
-                        <p>Which oils are recommended for joint pain or sore muscles?</p>
-                    </div>
-                </div>
-            </section>
-
         </div>
     </main>
 
+
+    <script src="js/main.js"></script>
 </body>
 </html>

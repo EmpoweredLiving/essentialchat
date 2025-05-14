@@ -50,7 +50,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "system-ui, sans-serif", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: 1.6;
     background-color: transparent; /* Body background transparent for iframe */
     color: var(--text-main);
@@ -92,6 +92,7 @@ body {
 .main-nav a {
     text-decoration: none;
     color: var(--text-subdued);
+    font-size: large;
     font-weight: 500;
     padding: 8px 10px; /* Padding on nav links */
     position: relative;
@@ -605,10 +606,29 @@ a.quick-link-anchor {
     box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.1); /* Slightly stronger shadow */
 }
 
-/* This CTA section was removed when button moved to header, styles can be removed if not used */
-/* .pip-cta-section { ... } */
-/* .pip-cta-section h3 { ... } */
-/* .pip-cta-section p { ... } */
+.pip-cta-section {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--casal-50); /* Light background tint for CTA */
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.pip-cta-section h3 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.pip-cta-section p {
+    margin-bottom: 20px;
+    color: var(--text-subdued);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .btn.pip-external-link-btn { /* Now refers to the button in .tab-header */
     /* font-size: 1.1rem; /* Already styled in .tab-header > .btn... */
@@ -658,3 +678,267 @@ a.quick-link-anchor {
         gap: 20px; /* Reduce gap on mobile */
     }
 }
+
+/* ==== Get Inspired Page V2 Styles ==== */
+.inspired-page-v2 .page-title {
+    margin-bottom: 15px;
+}
+.inspired-page-v2 .page-subtitle {
+    margin-bottom: 50px;
+    font-size: 1.15rem;
+    max-width: 700px;
+}
+
+/* Featured Prompts Carousel Section */
+.featured-prompts-carousel-section {
+    margin-bottom: 60px;
+    text-align: center;
+}
+.featured-prompts-carousel-section h2 {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 30px;
+}
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff; /* CHANGED: Base background to white */
+    border-radius: 16px; /* SLIGHTLY INCREASED: Softer radius like .tabs-container */
+    padding: 30px 50px; /* Keep or adjust padding */
+    box-shadow: 0 10px 30px rgba(var(--casal-800-rgb), 0.07); /* Consistent shadow like .tabs-container */
+    
+    /* ADD THE GRADIENT */
+    background-image: linear-gradient(
+        to bottom,
+        rgba(var(--casal-100-rgb), 0.4), /* Start color - light tint of casal-100 */
+        rgba(var(--casal-50-rgb), 0.1) 10%,  /* Transition to lighter tint */
+        transparent 40%                /* Fade to fully transparent */
+    );
+    /* Ensure you have --casal-100-rgb and --casal-50-rgb defined in :root */
+}
+
+.carousel-slides {
+    position: relative;
+    overflow: hidden; /* Hides non-active slides */
+    height: 150px; /* Adjust based on content height, or set dynamically */
+    display: flex; /* For horizontal alignment if needed, but JS controls visibility */
+}
+.carousel-slide {
+    display: none; /* Hidden by default, JS makes active one visible */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Allow slides to overlap */
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+.carousel-slide.active {
+    display: flex; /* Show active slide */
+    opacity: 1;
+    z-index: 1;
+}
+.carousel-slide .slide-content {
+    /* Styles for text within a slide */
+}
+.carousel-slide h3 {
+    font-size: 1.4rem;
+    color: var(--primary-accent-darker);
+    margin-bottom: 10px;
+}
+.carousel-slide p {
+    font-size: 1rem;
+    color: var(--text-subdued);
+    max-width: 80%;
+    margin: 0 auto;
+}
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(var(--casal-900-rgb), 0.3);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2; /* Above slides */
+    font-size: 1.5rem; /* For arrow characters */
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-button:hover {
+    background-color: rgba(var(--casal-900-rgb), 0.5);
+}
+.carousel-button.prev { left: 10px; }
+.carousel-button.next { right: 10px; }
+
+.carousel-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+.carousel-dot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: var(--casal-200);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Add border-color to transition */
+    border: 1px solid var(--casal-700); /* EXAMPLE: 2px solid border using --casal-700 */
+}
+.carousel-dot.active {
+    background-color: var(--primary-accent); /* Fill color for active */
+    border-color: var(--primary-accent-darker); /* EXAMPLE: Darker border for active dot */
+    /* Or keep the same border color: border-color: var(--casal-700); */
+}
+
+
+/* Unified Category Grid Section */
+.category-grid-section {
+    margin-bottom: 60px;
+    text-align: center;
+}
+.category-grid-section h2 {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 30px;
+}
+.inspiration-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    text-align: left; /* Reset text align for cards */
+}
+/* ==== Flip Card Styles for Get Inspired Page V2 ==== */
+.inspiration-category-grid { /* Existing grid styles are fine */
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    /* gap: 25px; */
+    perspective: 1000px; /* Adds perspective for 3D effect on child cards */
+}
+
+.flip-card-container {
+    background-color: transparent; /* The container itself is transparent */
+    width: 100%; /* Or specific width if not relying on grid cell */
+    min-height: 180px; /* Adjust: Min height for cards, content will determine actual */
+    border-radius: 12px;
+    cursor: pointer;
+    /* perspective: 1000px; Moved to parent grid for better performance */
+}
+.flip-card-container:focus { /* Outline for keyboard focus */
+    outline: 2px solid var(--primary-accent);
+    outline-offset: 2px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+    box-shadow: 0 6px 18px rgba(var(--casal-900-rgb), 0.07);
+    border-radius: 12px; /* Apply to inner if container is transparent */
+}
+
+/* Add .flipped class with JS to trigger the flip */
+.flip-card-container.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 12px; /* Match inner card */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.flip-card-front {
+    background-color: var(--card-bg); /* White or very light background */
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+.flip-card-front h3 {
+    font-size: 1.3rem;
+    color: var(--primary-accent-darker);
+    margin-bottom: 10px;
+}
+.flip-card-front .front-tagline {
+    font-size: 0.95rem;
+    color: var(--text-subdued);
+    line-height: 1.5;
+}
+
+.flip-card-back {
+    background-color: var(--primary-accent); /* Use accent color for back */
+    color: var(--text-light); /* Light text on dark background */
+    transform: rotateY(180deg); /* Initially rotated */
+    border: 1px solid var(--primary-accent-darker);
+}
+.flip-card-back h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(var(--casal-50-rgb), 0.5);
+    padding-bottom: 8px;
+}
+.flip-card-back ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 90%;
+}
+.flip-card-back ul li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+.flip-card-back ul li::before { /* Optional: custom bullet */
+    content: "› "; /* Chevron like bullet */
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* Ask Anything Section */
+.ask-anything-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--casal-100); /* Light background */
+    border-radius: 12px;
+    margin-top: 40px;
+}
+.ask-anything-section h2 {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+.ask-anything-section p {
+    font-size: 1.1rem;
+    color: var(--text-subdued);
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+}
+.btn.btn-primary-cta { /* For the main CTA button */
+    font-size: 1.1rem;
+    padding: 12px 30px;
+}
+
