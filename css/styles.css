@@ -149,28 +149,31 @@ body {
 }
 
 /* ==== Video Section (Tutorial Page) ==== */
-.video-wrapper {
-    position: relative;
-    padding-bottom: 35.5%; /* Or your adjusted value for aspect ratio */
-    height: 0;
-    overflow: hidden; /* Keep this to contain the iframe */
-    max-width: 700px; /* Or your preferred max-width */
-    margin: 0 auto 40px auto; /* Keep for centering and spacing */
-    
-    /* border: 1px solid var(--border-color); /* REMOVED OR COMMENTED OUT */
-    border-radius: 12px; /* You can keep this if you want the iframe corners to be rounded,
-                           but it won't be visible without a border or background */
-    /* box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.07); /* REMOVED OR COMMENTED OUT */
+.universal-video-container {
+    width: 100%;
+    max-width: 800px; /* Optional: constrain max width on large screens */
+    margin: 0 auto 20px auto; /* Center the container and add some bottom margin */
+    background-color: #000; /* Fallback background, good for letterboxing or loading */
+    overflow: hidden; /* Good practice */
 }
 
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px; /* Apply border-radius directly to the iframe if you want rounded corners
-                           on the video player itself */
+.universal-video-container iframe {
+    display: block;         /* Remove extra space below inline elements */
+    width: 100%;            /* Make iframe fill the container's width */
+    aspect-ratio: 16 / 9;   /* << KEY: Default aspect ratio. Most common. */
+                            /* Adjust if your primary videos are different, e.g., 4 / 3 */
+    border: 0;              /* Remove default iframe border */
+    /* height: auto; is implied when aspect-ratio and width are set */
+}
+
+/* Mobile Adjustments (Optional - above should be responsive) */
+@media (max-width: 600px) {
+    .universal-video-container {
+        max-width: 100%; /* Allow full width on small screens */
+    }
+    h2 {
+        font-size: 1.2em;
+    }
 }
 
 /* ==== Buttons (General) ==== */
@@ -942,3 +945,41 @@ a.quick-link-anchor {
     padding: 12px 30px;
 }
 
+/* ==== Chatbot Page Styles ==== */
+.chatbot-page .page-title { /* If you uncomment the h1 */
+    margin-bottom: 10px;
+}
+.chatbot-page .page-subtitle { /* If you uncomment the subtitle */
+    margin-bottom: 30px;
+}
+
+.chatbot-container {
+    max-width: 100%; /* Allow chatbot container to be wider if desired */
+    padding: 0 10px; /* Minimal padding on sides for wider iframe */
+}
+
+.chatbot-iframe-wrapper {
+    width: 100%;
+    /* max-width: 900px; /* Optional: if you want to constrain width */
+    /* margin: 0 auto; /* To center if max-width is used */
+    
+    /* --- KEY CHANGES FOR HEIGHT --- */
+    height: 700px; /* Set a height on the wrapper to match the iframe */
+    /* OR, for a more responsive height based on viewport: */
+    /* height: 70vh; /* Example: 70% of the viewport height */
+    /* min-height: 600px; /* Ensure a minimum sensible height */
+    /* max-height: 800px; /* Prevent it from getting excessively tall */
+
+    border-radius: 12px;
+    overflow: hidden; /* Keeps iframe within rounded corners */
+    box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.07);
+    position: relative; /* Good for absolute positioning of children if ever needed */
+}
+
+.chatbot-iframe-wrapper iframe {
+    display: block; 
+    width: 100%;
+    height: 100%; /* Make iframe fill its wrapper */
+    border: none; /* Explicitly remove border, though style attribute does this */
+    /* border-radius: 12px; /* Redundant if wrapper has overflow:hidden and border-radius */
+}
