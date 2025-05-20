@@ -147,7 +147,15 @@ body {
     margin-right: auto;
     padding: 0 20px;
 }
-
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-top: 1em;
+  margin-bottom: 1 em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
 /* ==== Video Section (Tutorial Page) ==== */
 .universal-video-container {
     width: 100%;
