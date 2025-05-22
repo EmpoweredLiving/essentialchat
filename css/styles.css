@@ -141,11 +141,11 @@ body {
     text-align: center;
     font-size: 1.1rem;
     color: var(--text-subdued);
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 ul {
   display: block;
@@ -157,7 +157,6 @@ ul {
   padding-left: 40px;
 }
 /* ==== Video Section (Tutorial Page) ==== */
-/* ==== Video Section (Tutorial Page) ==== */
 .universal-video-container {
     position: relative;
     overflow: hidden;
@@ -166,7 +165,7 @@ ul {
     margin: 0 auto 20px auto; /* Your original margin */
     /* padding-top: 56.25%;  16:9 Aspect Ratio (9 / 16 * 100) */
     /* Your inline style was 56.31%, which is very close. Use 56.25% for perfect 16:9 */
-    padding-top: 56.25%; /* Or 56.31% if you prefer the exact value you had */
+    padding-top: 10%; /* Or 56.31% if you prefer the exact value you had */
     /* background-color: #000; Optional, can be removed if video loads reliably */
 }
 
