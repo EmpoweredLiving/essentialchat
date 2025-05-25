@@ -1,12 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- GLOBAL DATA & HELPERS (for PIPs primarily - Categories now derived from HTML) ---
-    // REMOVED: const productInfoPages = [...]
+
 
     const officialPipCategoriesOrder = [
-        "All", "Single Oils", "Proprietary Blends", "MetaPWR™", "On Guard™", // Ensure these TEXTS match display needs
-        "dōTERRA Spa™", "dōTERRA Sun Care", "Essential Skin Care™", "dōTERRA Hair Care",
-        "HD Clear™", "Targeted Essentials", "Collections", "Diffusers", "Holiday"
-        // Add any other CATEGORY DISPLAY NAMES you want in this specific order
+        "All", "Single Oils", "Proprietary Blends", "Supplements & Wellness", "Targeted Essentials", "MetaPWR", "On Guard", "Skin Care & Body", "Sun Care", "Diffusers", "Holiday" // Add any other CATEGORY DISPLAY NAMES you want in this specific order
     ];
 
     // This function is still useful for generating the data-filter attributes for buttons
@@ -37,13 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log("PIP category filter container or links grid not found. Cannot initialize PIP tab fully.");
             return;
         }
-
-        // 1. Dynamically Render PIP Category Filter Buttons
-        //    Derive categories from the `data-category` attributes of the static HTML PIP items.
-        //    The `data-category` in your HTML should be the SANITIZED version.
-        //    We need a way to map sanitized back to display names if we want officialPipCategoriesOrder to work with display names.
-        //    For simplicity now, let's assume officialPipCategoriesOrder contains DISPLAY names,
-        //    and we'll create a unique set of DISPLAY names from products IF necessary.
 
         const uniqueDisplayCategoriesFromHtml = new Set();
         const pipItemsInHtml = pipLinksGrid.querySelectorAll('.searchable-item');
