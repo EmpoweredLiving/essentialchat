@@ -5195,58 +5195,28 @@
                         </div>
                         <p class="no-results-message" style="display:none;">No blogs found.</p>
                     </div>
-
-                                        <!-- Product Info Pages (PIPs) Tab Panel - REVISED -->
-                   <div id="pips" class="tab-panel">
+                    <!-- Product Info Pages Tab Panel -->
+                    <!-- Product Info Pages Tab Panel -->
+                    <div class="tab-panel active" id="pips"> <!-- 'active' class makes this visible by default -->
                         <div class="tab-header">
-                            <h2>Explore Product Information Pages (PIPs)</h2>
-                            <a href="https://www.doterra.com/ME/en_ME/product-information-pages" class="btn resource-btn pip-external-link-btn" target="_blank" rel="noopener noreferrer">
-                                Visit dōTERRA PIPs Page
-                            </a>
+                            <h2>Product Info Pages</h2>
+                            <input type="text" class="tab-search-input" placeholder="Search Product Info Pages...">
                         </div>
 
-                        <div class="pip-explanation-content">
-                            <div class="pip-text-section">
-                                <h3>What are Product Information Pages (PIPs)?</h3>
-                                <p>Product Information Pages, or PIPs, are detailed documents created by dōTERRA for each of their products. Think of them as your comprehensive guide, offering in-depth insights that go beyond the label. Each PIP provides a wealth of knowledge, including key ingredients, primary benefits, directions for use, and any necessary cautions.</p>
-
-                                     <hr class="content-divider"> 
-
-                                <h3>Why PIPs are an Amazing Resource (Especially for Supplements!):</h3>
-                                <p>Understanding what you're using is key to a confident wellness journey, and PIPs empower you with that knowledge!</p>
-                                <ul>
-                                    <li><strong>Deep Product Knowledge:</strong> Discover the science, sourcing, and specific benefits of each essential oil, blend, or supplement.</li>
-                                    <li><strong>Supplement Savvy:</strong> For supplements, PIPs are invaluable. They often detail the nutritional information, the purpose of key ingredients, and research supporting their efficacy, helping you make informed choices for your health goals.</li>
-                                    <li><strong>Usage Guidance:</strong> Get clear instructions on how to use products safely and effectively for the best results.</li>
-                                    <li><strong>Ingredient Transparency:</strong> Know exactly what's in your dōTERRA products.</li>
-                                    <li><strong>Quick Answers:</strong> A reliable first stop for many common product questions.</li>
-                                </ul>
-                                <p>Whether you're new to an oil or looking to understand a supplement more deeply, PIPs are your go-to resource for official, detailed information.</p>
-
-                                     <hr class="content-divider"> 
-                                                        
-                                <h3>Got Questions After Reading a PIP?:</h3>
-                                <p>That's what Essential Chat is here for! Bring your questions, insights, or anything you'd like to discuss from the PIPs, and let's explore them together.</p>
-                                
-                            </div>
-
-                            <div class="pip-image-section">
-                                <!-- Replace with your actual image later -->
-                                <img src="https://firebasestorage.googleapis.com/v0/b/essential-chat-v2-xxqjdq.firebasestorage.app/o/Images%2FPipExampleImage1.jpg?alt=media&token=75ea176c-548b-48d7-8cff-1cc7674ee81f" alt="Illustration representing a Product Information Page">
-                            </div>
+                        <!-- Container for dynamically generated PIP category buttons -->
+                        <div class="category-filter-bar" id="pipCategoryFilters">
+                            <!-- PIP Category filter buttons will be injected here by JavaScript -->
                         </div>
 
-                        <div class="pip-cta-section">
-                            <h3>Access Official dōTERRA PIPs Now:</h3>
-                            <p>Dive into the complete library of Product Information Pages directly on dōTERRA's official website.</p>
-                            <a href="https://www.doterra.com/ME/en_ME/product-information-pages" class="btn resource-btn pip-external-link-btn" target="_blank" rel="noopener noreferrer">
-                                Visit dōTERRA PIPs Page
-                                <!-- Optional: Add an external link icon -->
-                                <!-- <i class="fas fa-external-link-alt"></i> -->
-                            </a>
+                        <!-- Container for dynamically generated PIP links/cards -->
+                        <div class="resource-grid" id="pipLinksGrid">
+                            <!-- PIP Links/Cards will be injected here by JavaScript -->
+                        </div>
+
+                        <div class="no-results-message" style="display: none;">
+                            No product information pages found matching your criteria.
                         </div>
                     </div>
-
                 </div> <!-- /.tab-content-panels -->
             </div> <!-- /.tabs-container -->
         </div> <!-- /.container -->

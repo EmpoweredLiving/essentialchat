@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dōTERRA Resources</title>
+    <link rel="stylesheet" href="style.css"> {/* Make sure this path is correct */}
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#tutorial">Tutorial</a></li>
+                    <li><a href="#get-inspired">Get Inspired</a></li>
+                    <li><a href="#doterra-resources" class="active">dōTERRA Resources</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content resources-page">
+        <div class="container">
+            <h1 class="page-title">Resources</h1>
+            <!-- Optional: <p class="page-subtitle">Explore various resources to help you on your dōTERRA journey.</p> -->
+
+            <div class="tabs-container">
+                <nav class="tab-navigation">
+                    <button class="tab-button" data-tab="ebooks">eBooks</button>
+                    <button class="tab-button" data-tab="quick-links">Quick Links</button>
+                    <button class="tab-button" data-tab="blogs">Blogs</button>
+                    <button class="tab-button active" data-tab="pips">Product Info Pages</button>
+                    {/* Add other main tabs here if needed */}
+                </nav>
+
+                <div class="tab-content-panels">
+                    <!-- eBooks Tab Panel -->
+                    <div class="tab-panel" id="ebooks">
+                        <div class="tab-header">
+                            <h2>eBooks</h2>
+                            <input type="text" class="tab-search-input" placeholder="Search eBooks...">
+                        </div>
+                        <div class="category-filter-bar">
+                            <button class="category-filter-btn active" data-filter="all">All</button>
+                            {/* Add eBook category buttons here if applicable, or remove if not needed */}
+                        </div>
+                        <div class="resource-grid">
+                            <!-- Example eBook Card (replace with your actual eBook content structure) -->
+                            <div class="searchable-item resource-card" data-category="wellness">
+                                <img src="placeholder-ebook-cover.jpg" alt="eBook Cover" style="height:180px; object-fit:cover; background-color: #eee;">
+                                <div class="resource-card-content">
+                                    <h3 class="searchable-text">Living a Healthy Lifestyle eBook</h3>
+                                    <p class="resource-description searchable-text">Discover tips and tricks for incorporating essential oils into your wellness routine.</p>
+                                    <a href="#" class="btn resource-btn" target="_blank">Download eBook</a>
+                                
+                                </div>
+                            </div>
+                            <p>eBook content goes here. Structure your items with `.searchable-item` and text to be searched within `.searchable-text`.</p>
+                        </div>
+                        <div class="no-results-message" style="display: none;">No eBooks found.</div>
+                    </div>
+
+                    <!-- Quick Links Tab Panel -->
+                    <div class="tab-panel" id="quick-links">
+                        <div class="tab-header">
+                            <h2>Quick Links</h2>
+                            <input type="text" class="tab-search-input" placeholder="Search Quick Links...">
+                        </div>
+                        {/* No category filters for quick links in this example, but you can add them if needed */}
+                        <div class="resource-grid">
+                             <!-- Example Quick Link Card -->
+                            <div class="searchable-item resource-card quick-link-card" data-category="general">
+                                <a href="https://www.doterra.com" class="quick-link-anchor" target="_blank">
+                                    <span class="searchable-text">dōTERRA Main Website</span>
+                                </a>
+                            </div>
+                            <p>Quick Links content goes here. Structure your items with `.searchable-item` and text to be searched within `.searchable-text`.</p>
+                        </div>
+                        <div class="no-results-message" style="display: none;">No Quick Links found.</div>
+                    </div>
+
+                    <!-- Blogs Tab Panel -->
+                    <div class="tab-panel" id="blogs">
+                        <div class="tab-header">
+                            <h2>Blogs</h2>
+                            <input type="text" class="tab-search-input" placeholder="Search Blogs...">
+                        </div>
+                        <div class="category-filter-bar">
+                            <button class="category-filter-btn active" data-filter="all">All</button>
+                            <button class="category-filter-btn" data-filter="diy">DIY</button>
+                            <button class="category-filter-btn" data-filter="recipes">Recipes</button>
+                            {/* Add other blog category buttons here */}
+                        </div>
+                        <div class="resource-grid">
+                            <!-- Example Blog Card (replace with your actual blog content structure) -->
+                            <div class="searchable-item resource-card" data-category="diy">
+                                <img src="placeholder-blog-image.jpg" alt="Blog Image" style="height:180px; object-fit:cover; background-color: #eee;">
+                                <div class="resource-card-content">
+                                    <h3 class="searchable-text">Top 5 DIY Cleaning Recipes</h3>
+                                    <p class="resource-description searchable-text">Learn how to make your own effective and natural cleaners using essential oils.</p>
+                                    <a href="#" class="btn resource-btn" target="_blank">Read More</a>
+                                </div>
+                            </div>
+                            <p>Blog content goes here. Structure your items with `.searchable-item`, `data-category`, and text to be searched within `.searchable-text`.</p>
+                        </div>
+                        <div class="no-results-message" style="display: none;">No Blog articles found.</div>
+                    </div>
+
+                    <!-- Product Info Pages Tab Panel -->
+                    <div class="tab-panel active" id="pips"> {/* `active` class makes this visible by default */}
+                        <div class="tab-header">
+                            <h2>Product Info Pages</h2>
+                            <input type="text" class="tab-search-input" placeholder="Search Product Info Pages...">
+                        </div>
+
+                        {/* Container for dynamically generated PIP category buttons */}
+                        <div class="category-filter-bar" id="pipCategoryFilters">
+                            {/* PIP Category filter buttons will be injected here by JavaScript */}
+                        </div>
+
+                        {/* Container for dynamically generated PIP links/cards */}
+                        <div class="resource-grid" id="pipLinksGrid">
+                            {/* PIP Links/Cards will be injected here by JavaScript */}
+                        </div>
+
+                        <div class="no-results-message" style="display: none;">
+                            No product information pages found matching your criteria.
+                        </div>
+                    </div>
+
+                    {/* Add other tab panels here corresponding to your tab buttons */}
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="script.js"></script> {/* Make sure this path is correct */}
+</body>
+</html>

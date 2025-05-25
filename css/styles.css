@@ -19,6 +19,8 @@
     --casal-500-rgb: 38, 165, 180;
     --casal-800-rgb: 36, 89, 102;
     --casal-900-rgb: 34, 75, 87;
+    --primary-accent-rgb: 38, 165, 180; /* Added for .tab-search-input:focus */
+
 
     /* Theme Variables */
     --page-bg: var(--casal-50); /* Or transparent if you prefer */
@@ -150,8 +152,10 @@ body {
 ul {
   display: block;
   list-style-type: disc;
+  /* margin-top: 1em;  User CSS was 1 em */
+  /* margin-bottom: 1 em; User CSS was 1 em */
   margin-top: 1em;
-  margin-bottom: 1 em;
+  margin-bottom: 1em;
   margin-left: 0;
   margin-right: 0;
   padding-left: 40px;
@@ -165,7 +169,7 @@ ul {
     margin: 0 auto 20px auto; /* Your original margin */
     /* padding-top: 56.25%;  16:9 Aspect Ratio (9 / 16 * 100) */
     /* Your inline style was 56.31%, which is very close. Use 56.25% for perfect 16:9 */
-    padding-top: 10%; /* Or 56.31% if you prefer the exact value you had */
+    padding-top: 56.25%; /* Or 56.31% if you prefer the exact value you had */
     /* background-color: #000; Optional, can be removed if video loads reliably */
 }
 
@@ -184,7 +188,7 @@ ul {
     .universal-video-container {
         max-width: 100%; /* Allow full width on small screens */
     }
-    h2 {
+    h2 { /* This is a very general h2 style, might need more specificity */
         font-size: 1.2em;
     }
 }
@@ -304,12 +308,12 @@ ul {
     font-weight: 600;
     cursor: pointer;
     color: var(--text-main);
-    list-style: none;
+    list-style: none; /* Hides details marker in some browsers */
     transition: background-color 0.2s ease;
 }
-.faq-question::-webkit-details-marker, .faq-question::marker { display: none; }
+.faq-question::-webkit-details-marker, .faq-question::marker { display: none; } /* Standard way to hide marker */
 .faq-question:hover { background-color: var(--casal-50); }
-.faq-question::after {
+.faq-question::after { /* Using ::after for custom icon */
     content: '+';
     font-size: 1.5em;
     color: var(--primary-accent);
@@ -317,13 +321,13 @@ ul {
     transition: transform 0.3s ease;
     margin-left: 10px;
 }
-.faq-item[open] .faq-question::after { content: '−'; /* Unicode minus U+2212 */ }
+.faq-item[open] > .faq-question::after { content: '−'; /* Unicode minus U+2212 */ }
 .faq-answer {
     padding: 20px;
     font-size: 0.95rem;
     line-height: 1.7;
     color: var(--text-subdued);
-    border-top: 1px dashed var(--casal-100);
+    border-top: 1px dashed var(--casal-100); /* Only show when open, can be inside [open] */
 }
 .faq-answer p { margin-bottom: 10px; }
 .faq-answer p:last-child { margin-bottom: 0; }
@@ -353,30 +357,28 @@ ul {
     padding: 0;
 }
 
-.tab-navigation { /* CONSOLIDATED AND CORRECTED */
+.tab-navigation {
     display: flex;
-    flex-wrap: wrap;       /* Allow buttons to wrap to new line if they don't fit */
-    /* justify-content: center; /* Optional: Center buttons if they wrap */
-    padding: 10px 15px 0 15px; /* Padding around the tab buttons */
+    flex-wrap: wrap;
+    padding: 10px 15px 0 15px;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 0; /* Remove bottom margin, .tab-content-panels will handle spacing */
+    margin-bottom: 0;
 }
 
 .tab-button {
-    padding: 14px 18px; /* Adjusted padding */
+    padding: 14px 18px;
     cursor: pointer;
     background-color: transparent;
     border: none;
     border-bottom: 3px solid transparent;
     outline: none;
-    font-size: 1.05rem; /* Slightly adjusted font size */
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--text-subdued);
     position: relative;
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
-    margin-right: 5px; /* Space between buttons */
-    margin-bottom: -1px; /* Overlap with parent border for seamless active state */
-    /* white-space: nowrap; /* REMOVED to allow wrapping if needed */
+    margin-right: 5px;
+    margin-bottom: -1px; /* Overlap for seamless active border */
 }
 .tab-button:last-child {
     margin-right: 0;
@@ -395,7 +397,7 @@ ul {
 }
 
 .tab-panel {
-    display: none;
+    display: none; /* Controlled by JS and .active class */
     animation: fadeIn 0.5s ease-out;
 }
 .tab-panel.active {
@@ -406,20 +408,20 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px; /* Space below header (title/search or title/button) */
-    flex-wrap: wrap; /* Allow items to wrap on small screens */
-    gap: 15px; /* Space between title and search/button if they wrap */
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 .tab-header h2 {
-    font-size: 2rem; /* Slightly larger tab panel title */
+    font-size: 2rem;
     color: var(--primary-accent);
     margin: 0;
-    line-height: 1.2; /* Ensure title doesn't take too much vertical space */
+    line-height: 1.2;
 }
 .tab-header > .btn.pip-external-link-btn { /* Button in PIP header */
     font-size: 0.9rem;
     padding: 10px 20px;
-    margin-left: 20px; /* Min space from title */
+    margin-left: 20px;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -427,22 +429,22 @@ ul {
 .tab-search-input {
     padding: 10px 15px;
     border: 1px solid var(--border-color);
-    border-radius: 8px; /* Softer radius */
+    border-radius: 8px;
     font-size: 0.95rem;
     min-width: 260px;
     max-width: 100%;
-    /* margin-left: auto; */ /* If you want to push it right when title is short */
 }
 .tab-search-input:focus {
     outline: none;
     border-color: var(--primary-accent);
-    box-shadow: 0 0 0 3px rgba(var(--primary-accent-rgb), 0.2); /* Softer focus */
+    box-shadow: 0 0 0 3px rgba(var(--primary-accent-rgb), 0.2);
 }
 .no-results-message {
     color: var(--text-subdued);
     font-style: italic;
     padding: 25px 0;
     text-align: center;
+    display: none; /* Initially hidden, JS will show it */
 }
 
 /* Generic Resource Grid */
@@ -452,14 +454,14 @@ ul {
     gap: 25px;
 }
 
-/* Generic Resource Card Styling */
+/* Generic Resource Card Styling - Used by PIPs */
 .resource-card {
     background-color: #fff;
     border-radius: 12px;
     border: 1px solid var(--casal-100);
     box-shadow: 0 4px 12px rgba(var(--casal-900-rgb), 0.06);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    display: flex;
+    display: flex; /* Useful for quick-link-anchor to fill height */
     flex-direction: column;
     overflow: hidden;
     position: relative;
@@ -469,22 +471,21 @@ ul {
     transform: translateY(-5px);
     box-shadow: 0 7px 22px rgba(var(--casal-900-rgb), 0.1);
 }
-.resource-card img {
+.resource-card img { /* For blog cards with images, not directly used by current PIP card structure */
     width: 100%;
     height: 180px;
     object-fit: cover;
     display: block;
-    /* border-bottom: 1px solid var(--casal-100); /* Optional if gradient provides enough separation */
 }
 
-.resource-card-content {
+.resource-card-content { /* For blog cards with distinct content areas */
     padding: 20px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 .resource-card-content h3 {
-    font-size: 1.15rem; /* Slightly reduced for cards */
+    font-size: 1.15rem;
     color: var(--casal-800);
     font-weight: 600;
     margin-bottom: 10px;
@@ -506,15 +507,14 @@ ul {
 .btn.resource-btn {
     margin-top: auto;
     align-self: flex-start;
-    padding: 10px 20px; /* Standardized resource button padding */
+    padding: 10px 20px;
 }
 
-/* Quick Links Card Styling */
+/* Quick Links Card Styling - Used by PIPs */
 .resource-card.quick-link-card {
     border-left: 5px solid var(--primary-accent);
-    /* Gradient from .resource-card will apply */
 }
-a.quick-link-anchor {
+a.quick-link-anchor { /* The <a> tag inside the quick-link-card */
     display: block;
     padding: 20px 25px;
     text-decoration: none !important;
@@ -522,32 +522,35 @@ a.quick-link-anchor {
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.4;
-    height: 100%;
+    height: 100%; /* Make the anchor fill the card */
     box-sizing: border-box;
-    border-radius: inherit;
-    transition: color 0.2s ease; /* background-color removed as card has gradient */
+    transition: color 0.2s ease;
 }
+/* The .searchable-text span for PIP names is inside this anchor */
+a.quick-link-anchor .searchable-text {
+    /* No specific styles needed here unless you want to change its display from default span */
+}
+
 .resource-card.quick-link-card:hover a.quick-link-anchor {
     color: var(--primary-accent) !important;
 }
 
 
-/* Category Filter Bar Styling */
+/* Category Filter Bar Styling - Used by PIPs */
 .category-filter-bar {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 30px; /* More space after filters */
+    margin-bottom: 30px;
     padding-bottom: 15px;
-    /* border-bottom: 1px solid var(--border-color); /* Optional: if you want a line under filters */
 }
-.category-filter-btn {
+.category-filter-btn { /* Used by PIP category filters */
     padding: 8px 18px;
-    font-size: 0.9rem; /* Increased slightly */
+    font-size: 0.9rem;
     background-color: transparent;
     color: var(--text-subdued);
     border: 1px solid var(--casal-200);
-    border-radius: 20px;
+    border-radius: 20px; /* Pill shape */
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -564,21 +567,29 @@ a.quick-link-anchor {
     box-shadow: 0 2px 5px rgba(var(--primary-accent-rgb), 0.2);
 }
 
-/* PIP Status Label Styling */
+/* PIP Status Label Styling (not currently used by PIPs, but here for completeness) */
 .pip-status-label {
     display: inline-block;
     font-size: 0.75rem;
     padding: 3px 8px;
     border-radius: 4px;
     color: white;
-    background-color: var(--pip-status-bg, var(--text-subdued));
+    background-color: var(--pip-status-bg, var(--text-subdued)); /* Fallback color */
     margin-left: 10px;
     vertical-align: middle;
     font-weight: 500;
 }
 
-/* Hide items not matching filter (for future JS category filter) */
-.item-filtered-out { display: none !important; }
+/* Class used by JS to hide items that don't match search/filter */
+.searchable-item { /* This class is added by JS to PIP cards */
+    /* display: block; or flex, grid etc. based on card type */
+    /* transition: opacity 0.3s ease, transform 0.3s ease; Optional: for smoother hide/show */
+}
+.searchable-item[style*="display: none"] { /* Style for when JS hides it, more specific than .item-filtered-out if you had both */
+    /* You could add transitions here if you were animating opacity/height instead of display:none */
+}
+/* .item-filtered-out { display: none !important; } /* Original class from user, JS now sets display directly */
+
 
 /* Animation for tab panel fade in */
 @keyframes fadeIn {
@@ -586,23 +597,23 @@ a.quick-link-anchor {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* PIPs Tab - Revised Content Styling */
-#pips .tab-header h2 {
-    width: auto; /* Allow h2 to size by content */
-    text-align: left;
-    border-bottom: none; /* Remove individual border if .tab-header has one */
-    padding-bottom: 0;
+/* PIPs Tab - Specific Content Styling (if any beyond resource-card) */
+#pips .tab-header h2 { /* The h2 within the PIPs tab panel */
+    /* width: auto; Already handled by flexbox */
+    /* text-align: left; Default for h2 */
+    /* border-bottom: none; No border on h2 by default */
+    /* padding-bottom: 0; No padding on h2 by default */
 }
-.pip-explanation-content {
+.pip-explanation-content { /* For a different PIP page layout, not the link grid */
     display: flex;
     flex-wrap: wrap;
-    gap: 35px; /* Increased gap */
+    gap: 35px;
     align-items: flex-start;
     margin-bottom: 40px;
 }
 .pip-text-section { flex: 2; min-width: 300px; }
 .pip-text-section h3 {
-    font-size: 1.45rem; /* Slightly larger */
+    font-size: 1.45rem;
     color: var(--primary-accent);
     margin-top: 25px;
     margin-bottom: 12px;
@@ -612,29 +623,27 @@ a.quick-link-anchor {
 .pip-text-section ul { list-style: disc; margin-left: 20px; padding-left: 10px; margin-bottom: 20px; color: var(--text-subdued); }
 .pip-text-section ul li { margin-bottom: 10px; line-height: 1.75; }
 .pip-text-section ul li strong { color: var(--text-main); font-weight: 600; }
-.pip-image-section { flex: 1; min-width: 280px; /* Slightly increased */ text-align: center; margin-top: 10px; }
+.pip-image-section { flex: 1; min-width: 280px; text-align: center; margin-top: 10px; }
 .pip-image-section img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px; /* Softer radius */
-    box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.1); /* Slightly stronger shadow */
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.1);
 }
 
 .pip-cta-section {
     text-align: center;
     padding: 30px 20px;
-    background-color: var(--casal-50); /* Light background tint for CTA */
+    background-color: var(--casal-50);
     border-radius: 8px;
     margin-top: 30px;
     margin-bottom: 40px;
 }
-
 .pip-cta-section h3 {
     font-size: 1.5rem;
     color: var(--text-main);
     margin-bottom: 10px;
 }
-
 .pip-cta-section p {
     margin-bottom: 20px;
     color: var(--text-subdued);
@@ -642,19 +651,15 @@ a.quick-link-anchor {
     margin-left: auto;
     margin-right: auto;
 }
-
-
-
 .pip-essential-chat-integration {
     margin-top: 40px;
-    padding: 25px; /* More padding */
-    background-color: var(--casal-50); /* Light background tint */
-    border-radius: 10px; /* Rounded corners */
+    padding: 25px;
+    background-color: var(--casal-50);
+    border-radius: 10px;
     text-align: center;
-    /* border-top: 1px solid var(--border-color); Removed border, using bg for separation */
 }
 .pip-essential-chat-integration h4 {
-    font-size: 1.3rem; /* Slightly larger */
+    font-size: 1.3rem;
     color: var(--primary-accent);
     margin-bottom: 12px;
 }
@@ -666,108 +671,66 @@ a.quick-link-anchor {
     line-height: 1.7;
 }
 
-/* Responsive adjustments for cards if needed (general) */
+/* Responsive adjustments */
 @media (max-width: 600px) {
-    .prompt-grid, .resource-grid {
+    .prompt-grid, .resource-grid { /* Affects PIPs grid */
         grid-template-columns: 1fr; /* Stack cards on smaller screens */
     }
     .inspiration-section .intro-text,
-    .pip-text-section { /* For PIPs page on mobile */
+    .pip-text-section { /* For PIPs page text sections, not the link grid */
         text-align: left;
     }
-    .tab-header { /* Allow title and search/button to stack cleanly */
+    .tab-header { /* Affects PIPs tab header */
         flex-direction: column;
-        align-items: flex-start; /* Align items to left when stacked */
+        align-items: flex-start;
         gap: 15px;
     }
     .tab-header > .btn.pip-external-link-btn,
-    .tab-header .tab-search-input {
-        margin-left: 0; /* Remove left margin when stacked */
-        width: 100%; /* Make search/button full width when stacked */
+    .tab-header .tab-search-input { /* Affects PIPs tab search */
+        margin-left: 0;
+        width: 100%;
     }
     .pip-explanation-content {
-        gap: 20px; /* Reduce gap on mobile */
+        gap: 20px;
     }
 }
 
 /* ==== Get Inspired Page V2 Styles ==== */
-.inspired-page-v2 .page-title {
-    margin-bottom: 15px;
-}
-.inspired-page-v2 .page-subtitle {
-    margin-bottom: 50px;
-    font-size: 1.15rem;
-    max-width: 700px;
-}
+.inspired-page-v2 .page-title { margin-bottom: 15px; }
+.inspired-page-v2 .page-subtitle { margin-bottom: 50px; font-size: 1.15rem; max-width: 700px; }
 
 /* Featured Prompts Carousel Section */
-.featured-prompts-carousel-section {
-    margin-bottom: 60px;
-    text-align: center;
-}
-.featured-prompts-carousel-section h2 {
-    font-size: 1.8rem;
-    color: var(--text-main);
-    margin-bottom: 30px;
-}
+.featured-prompts-carousel-section { margin-bottom: 60px; text-align: center; }
+.featured-prompts-carousel-section h2 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 30px; }
 .carousel-container {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    background-color: #fff; /* CHANGED: Base background to white */
-    border-radius: 16px; /* SLIGHTLY INCREASED: Softer radius like .tabs-container */
-    padding: 30px 50px; /* Keep or adjust padding */
-    box-shadow: 0 10px 30px rgba(var(--casal-800-rgb), 0.07); /* Consistent shadow like .tabs-container */
-    
-    /* ADD THE GRADIENT */
-    background-image: linear-gradient(
-        to bottom,
-        rgba(var(--casal-100-rgb), 0.4), /* Start color - light tint of casal-100 */
-        rgba(var(--casal-50-rgb), 0.1) 10%,  /* Transition to lighter tint */
-        transparent 40%                /* Fade to fully transparent */
-    );
-    /* Ensure you have --casal-100-rgb and --casal-50-rgb defined in :root */
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 30px 50px;
+    box-shadow: 0 10px 30px rgba(var(--casal-800-rgb), 0.07);
+    background-image: linear-gradient( to bottom, rgba(var(--casal-100-rgb), 0.4), rgba(var(--casal-50-rgb), 0.1) 10%, transparent 40% );
 }
-
-.carousel-slides {
-    position: relative;
-    overflow: hidden; /* Hides non-active slides */
-    height: 150px; /* Adjust based on content height, or set dynamically */
-    display: flex; /* For horizontal alignment if needed, but JS controls visibility */
-}
+.carousel-slides { position: relative; overflow: hidden; height: 150px; display: flex; }
 .carousel-slide {
-    display: none; /* Hidden by default, JS makes active one visible */
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     width: 100%;
     height: 100%;
-    position: absolute; /* Allow slides to overlap */
+    position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
     transition: opacity 0.6s ease-in-out;
 }
-.carousel-slide.active {
-    display: flex; /* Show active slide */
-    opacity: 1;
-    z-index: 1;
-}
-.carousel-slide .slide-content {
-    /* Styles for text within a slide */
-}
-.carousel-slide h3 {
-    font-size: 1.4rem;
-    color: var(--primary-accent-darker);
-    margin-bottom: 10px;
-}
-.carousel-slide p {
-    font-size: 1rem;
-    color: var(--text-subdued);
-    max-width: 80%;
-    margin: 0 auto;
-}
+.carousel-slide.active { display: flex; opacity: 1; z-index: 1; }
+/* .carousel-slide .slide-content { } */ /* Not used with current structure */
+.carousel-slide h3 { font-size: 1.4rem; color: var(--primary-accent-darker); margin-bottom: 10px; }
+.carousel-slide p { font-size: 1rem; color: var(--text-subdued); max-width: 80%; margin: 0 auto; }
 .carousel-button {
     position: absolute;
     top: 50%;
@@ -778,8 +741,8 @@ a.quick-link-anchor {
     padding: 10px;
     cursor: pointer;
     border-radius: 50%;
-    z-index: 2; /* Above slides */
-    font-size: 1.5rem; /* For arrow characters */
+    z-index: 2;
+    font-size: 1.5rem;
     line-height: 1;
     width: 40px;
     height: 40px;
@@ -787,16 +750,10 @@ a.quick-link-anchor {
     align-items: center;
     justify-content: center;
 }
-.carousel-button:hover {
-    background-color: rgba(var(--casal-900-rgb), 0.5);
-}
+.carousel-button:hover { background-color: rgba(var(--casal-900-rgb), 0.5); }
 .carousel-button.prev { left: 10px; }
 .carousel-button.next { right: 10px; }
-
-.carousel-dots {
-    text-align: center;
-    margin-top: 20px;
-}
+.carousel-dots { text-align: center; margin-top: 20px; }
 .carousel-dot {
     display: inline-block;
     width: 15px;
@@ -805,53 +762,31 @@ a.quick-link-anchor {
     border-radius: 50%;
     margin: 0 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Add border-color to transition */
-    border: 1px solid var(--casal-700); /* EXAMPLE: 2px solid border using --casal-700 */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--casal-700);
 }
-.carousel-dot.active {
-    background-color: var(--primary-accent); /* Fill color for active */
-    border-color: var(--primary-accent-darker); /* EXAMPLE: Darker border for active dot */
-    /* Or keep the same border color: border-color: var(--casal-700); */
-}
-
+.carousel-dot.active { background-color: var(--primary-accent); border-color: var(--primary-accent-darker); }
 
 /* Unified Category Grid Section */
-.category-grid-section {
-    margin-bottom: 60px;
-    text-align: center;
-}
-.category-grid-section h2 {
-    font-size: 1.8rem;
-    color: var(--text-main);
-    margin-bottom: 30px;
-}
+.category-grid-section { margin-bottom: 60px; text-align: center; }
+.category-grid-section h2 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 30px; }
 .inspiration-category-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
-    text-align: left; /* Reset text align for cards */
-}
-/* ==== Flip Card Styles for Get Inspired Page V2 ==== */
-.inspiration-category-grid { /* Existing grid styles are fine */
-    /* display: grid; */
-    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-    /* gap: 25px; */
-    perspective: 1000px; /* Adds perspective for 3D effect on child cards */
+    text-align: left;
+    perspective: 1000px;
 }
 
+/* Flip Card Styles for Get Inspired Page V2 */
 .flip-card-container {
-    background-color: transparent; /* The container itself is transparent */
-    width: 100%; /* Or specific width if not relying on grid cell */
-    min-height: 180px; /* Adjust: Min height for cards, content will determine actual */
+    background-color: transparent;
+    width: 100%;
+    min-height: 180px;
     border-radius: 12px;
     cursor: pointer;
-    /* perspective: 1000px; Moved to parent grid for better performance */
 }
-.flip-card-container:focus { /* Outline for keyboard focus */
-    outline: 2px solid var(--primary-accent);
-    outline-offset: 2px;
-}
-
+.flip-card-container:focus { outline: 2px solid var(--primary-accent); outline-offset: 2px; }
 .flip-card-inner {
     position: relative;
     width: 100%;
@@ -860,22 +795,16 @@ a.quick-link-anchor {
     transition: transform 0.7s;
     transform-style: preserve-3d;
     box-shadow: 0 6px 18px rgba(var(--casal-900-rgb), 0.07);
-    border-radius: 12px; /* Apply to inner if container is transparent */
+    border-radius: 12px;
 }
-
-/* Add .flipped class with JS to trigger the flip */
-.flip-card-container.flipped .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
+.flip-card-container.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 12px; /* Match inner card */
+    border-radius: 12px;
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -883,111 +812,42 @@ a.quick-link-anchor {
     align-items: center;
     box-sizing: border-box;
 }
-
-.flip-card-front {
-    background-color: var(--card-bg); /* White or very light background */
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-}
-.flip-card-front h3 {
-    font-size: 1.3rem;
-    color: var(--primary-accent-darker);
-    margin-bottom: 10px;
-}
-.flip-card-front .front-tagline {
-    font-size: 0.95rem;
-    color: var(--text-subdued);
-    line-height: 1.5;
-}
-
+.flip-card-front { background-color: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color); }
+.flip-card-front h3 { font-size: 1.3rem; color: var(--primary-accent-darker); margin-bottom: 10px; }
+.flip-card-front .front-tagline { font-size: 0.95rem; color: var(--text-subdued); line-height: 1.5; }
 .flip-card-back {
-    background-color: var(--primary-accent); /* Use accent color for back */
-    color: var(--text-light); /* Light text on dark background */
-    transform: rotateY(180deg); /* Initially rotated */
+    background-color: var(--primary-accent);
+    color: var(--text-light);
+    transform: rotateY(180deg);
     border: 1px solid var(--primary-accent-darker);
 }
-.flip-card-back h4 {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(var(--casal-50-rgb), 0.5);
-    padding-bottom: 8px;
-}
-.flip-card-back ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    max-width: 90%;
-}
-.flip-card-back ul li {
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-.flip-card-back ul li::before { /* Optional: custom bullet */
-    content: "› "; /* Chevron like bullet */
-    margin-right: 5px;
-    font-weight: bold;
-}
+.flip-card-back h4 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid rgba(var(--casal-50-rgb), 0.5); padding-bottom: 8px; }
+.flip-card-back ul { list-style: none; padding: 0; text-align: left; max-width: 90%; }
+.flip-card-back ul li { font-size: 0.9rem; margin-bottom: 8px; line-height: 1.5; }
+.flip-card-back ul li::before { content: "› "; margin-right: 5px; font-weight: bold; }
 
 /* Ask Anything Section */
 .ask-anything-section {
     text-align: center;
     padding: 40px 20px;
-    background-color: var(--casal-100); /* Light background */
+    background-color: var(--casal-100);
     border-radius: 12px;
     margin-top: 40px;
 }
-.ask-anything-section h2 {
-    font-size: 1.8rem;
-    color: var(--text-main);
-    margin-bottom: 15px;
-}
-.ask-anything-section p {
-    font-size: 1.1rem;
-    color: var(--text-subdued);
-    max-width: 600px;
-    margin: 0 auto 25px auto;
-}
-.btn.btn-primary-cta { /* For the main CTA button */
-    font-size: 1.1rem;
-    padding: 12px 30px;
-}
+.ask-anything-section h2 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 15px; }
+.ask-anything-section p { font-size: 1.1rem; color: var(--text-subdued); max-width: 600px; margin: 0 auto 25px auto; }
+.btn.btn-primary-cta { font-size: 1.1rem; padding: 12px 30px; }
 
 /* ==== Chatbot Page Styles ==== */
-.chatbot-page .page-title { /* If you uncomment the h1 */
-    margin-bottom: 10px;
-}
-.chatbot-page .page-subtitle { /* If you uncomment the subtitle */
-    margin-bottom: 30px;
-}
-
-.chatbot-container {
-    max-width: 100%; /* Allow chatbot container to be wider if desired */
-    padding: 0 10px; /* Minimal padding on sides for wider iframe */
-}
-
+.chatbot-page .page-title { margin-bottom: 10px; }
+.chatbot-page .page-subtitle { margin-bottom: 30px; }
+.chatbot-container { max-width: 100%; padding: 0 10px; }
 .chatbot-iframe-wrapper {
     width: 100%;
-    /* max-width: 900px; /* Optional: if you want to constrain width */
-    /* margin: 0 auto; /* To center if max-width is used */
-    
-    /* --- KEY CHANGES FOR HEIGHT --- */
-    height: 700px; /* Set a height on the wrapper to match the iframe */
-    /* OR, for a more responsive height based on viewport: */
-    /* height: 70vh; /* Example: 70% of the viewport height */
-    /* min-height: 600px; /* Ensure a minimum sensible height */
-    /* max-height: 800px; /* Prevent it from getting excessively tall */
-
+    height: 700px; /* Or height: 70vh; min-height: 600px; max-height: 800px; */
     border-radius: 12px;
-    overflow: hidden; /* Keeps iframe within rounded corners */
+    overflow: hidden;
     box-shadow: 0 6px 18px rgba(var(--casal-800-rgb), 0.07);
-    position: relative; /* Good for absolute positioning of children if ever needed */
+    position: relative;
 }
-
-.chatbot-iframe-wrapper iframe {
-    display: block; 
-    width: 100%;
-    height: 100%; /* Make iframe fill its wrapper */
-    border: none; /* Explicitly remove border, though style attribute does this */
-    /* border-radius: 12px; /* Redundant if wrapper has overflow:hidden and border-radius */
-}
+.chatbot-iframe-wrapper iframe { display: block; width: 100%; height: 100%; border: none; }
