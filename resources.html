@@ -5197,27 +5197,56 @@
                     </div>
                 
                 
-                    <!-- Product Info Pages Tab Panel -->
-                    <div class="tab-panel" id="pips"> <!-- 'active' class makes this visible by default -->
-                        <div class="tab-header">
-                            <h2>Product Info Pages</h2>
-                            <input type="text" class="tab-search-input" placeholder="Search Product Info Pages...">
-                        </div>
+<!-- Product Info Pages Tab Panel -->
+<div class="tab-panel" id="pips"> <!-- Removed 'active' as eBooks is default -->
+    <div class="tab-header">
+        <h2>Product Info Pages</h2>
+        <input type="text" class="tab-search-input" placeholder="Search Product Info Pages...">
+    </div>
 
-                        <!-- Container for dynamically generated PIP category buttons -->
-                        <div class="category-filter-bar" id="pipCategoryFilters">
-                            <!-- PIP Category filter buttons will be injected here by JavaScript -->
-                        </div>
+    <!-- Container for dynamically generated PIP category buttons -->
+    <div class="category-filter-bar" id="pipCategoryFilters">
+<button class="category-filter-btn active" data-filter="all">All</button>
+<button class="category-filter-btn" data-filter="single-oils">Single Oils</button>
+<button class="category-filter-btn" data-filter="proprietary-blends">Proprietary Blends</button>
+<button class="category-filter-btn" data-filter="metapwr">MetaPWR™</button>
+    </div>
 
-                        <!-- Container for dynamically generated PIP links/cards -->
-                        <div class="resource-grid" id="pipLinksGrid">
-                            <!-- PIP Links/Cards will be injected here by JavaScript -->
-                        </div>
+    <!-- Container WITH STATICALLY DEFINED PIP links/cards -->
+    <div class="resource-grid" id="pipLinksGrid">
+        <!-- Example PIP Card 1: Lavender -->
+        <div class="searchable-item resource-card quick-link-card" data-category="single-oils">
+            <a href="https://share.doterra.com/pdfviewer/viewer/viewer.html?v=DigitalMarketingKit&portalType=v%2FDigitalMarketingKit&column=document&id=g72iokmsrp1gjatcvn3ap9qo51&suffix=pdf&print=1" class="quick-link-anchor" target="_blank">
+                <span class="searchable-text">Lavender</span>
+            </a>
+        </div>
 
-                        <div class="no-results-message" style="display: none;">
-                            No product information pages found matching your criteria.
-                        </div>
-                    </div>
+        <!-- Example PIP Card 2: Peppermint -->
+        <div class="searchable-item resource-card quick-link-card" data-category="single-oils">
+            <a href="https://share.doterra.com/pdfviewer/viewer/viewer.html?v=DigitalMarketingKit&portalType=v%2FDigitalMarketingKit&column=document&id=77ia8gmu517hb9hp1fbn3c1i5s&suffix=pdf&print=1" class="quick-link-anchor" target="_blank">
+                <span class="searchable-text">Peppermint</span>
+            </a>
+        </div>
+
+        <!-- Example PIP Card 3: Adaptiv - Calming Blend Capsules -->
+        <div class="searchable-item resource-card quick-link-card" data-category="proprietary-blends">
+            <a href="https://share.doterra.com/pdfviewer/viewer/viewer.html?v=DigitalMarketingKit&portalType=v%2FDigitalMarketingKit&column=document&id=1ajo3fe7sh7kl1hro66hqoge3s&suffix=pdf&print=1" class="quick-link-anchor" target="_blank">
+                <span class="searchable-text">Adaptiv - Calming Blend Capsules</span>
+            </a>
+        </div>
+
+        <!-- Example PIP Card 4: MetaPWR - Metabolic Assist (Category: metapwr) -->
+        <div class="searchable-item resource-card quick-link-card" data-category="metapwr">
+            <a href="https://share.doterra.com/pdfviewer/viewer/viewer.html?v=DigitalMarketingKit&portalType=v%2FDigitalMarketingKit&column=document&id=pcgp1hlrtl2h590rfu25mh6u0b&suffix=pdf&print=1" class="quick-link-anchor" target="_blank">
+                <span class="searchable-text">MetaPWR - Metabolic Assist</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="no-results-message" style="display: none;">
+        No product information pages found matching your criteria.
+    </div>
+</div>
 
                 </div> <!-- /.tab-content-panels -->
             </div> <!-- /.tabs-container -->
