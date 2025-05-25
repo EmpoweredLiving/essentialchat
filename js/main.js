@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-        // MetaPWR™
+        // MetaPWR
         
 
 { name: "MetaPWR - Metabolic Assist", url: "https://share.doterra.com/pdfviewer/viewer/viewer.html?v=DigitalMarketingKit&portalType=v%2FDigitalMarketingKit&column=document&id=pcgp1hlrtl2h590rfu25mh6u0b&suffix=pdf&print=1", category: "MetaPWR" },
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-        // OnGuard™
+        // OnGuard
         { name: "On Guard - Beadlets", url: "https://media.doterra.com/us/en/pips/doterra-onguard-beadlet.pdf?_ga=2.264414538.43890706.1748179522-1276305428.1744737881", category: "On Guard" },
 { name: "On Guard - Chewable Tablets", url: "https://media.doterra.com/us/en/pips/on-guard-chewable-tablets.pdf?_ga=2.67413716.43890706.1748179522-1276305428.1744737881", category: "On Guard" },
 { name: "On Guard - Cleaner Concentrate", url: "https://media.doterra.com/us/en/pips/doterra-onguard-cleaner-concentrate.pdf?_ga=2.67413716.43890706.1748179522-1276305428.1744737881", category: "On Guard" },
