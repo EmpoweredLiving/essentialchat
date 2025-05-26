@@ -1,103 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- GLOBAL DATA & HELPERS ---
+    // const officialPipCategoriesOrder = [ // No longer strictly needed if buttons are hardcoded
+    //     "All", "Single Oils", "Blends", "Supplements & Nutrition", "Diffusers", "Everything Else"
+    // ];
 
-
-    const officialPipCategoriesOrder = [
-        "All", "Single Oils", "Proprietary Blends", "Supplements & Wellness", "Targeted Essentials", "MetaPWR", "On Guard", "Skin Care & Body", "Sun Care", "Diffusers", "Holiday" // Add any other CATEGORY DISPLAY NAMES you want in this specific order
-    ];
-
-    // This function is still useful for generating the data-filter attributes for buttons
+    // This function might still be useful if you have other dynamic parts or for reference
+    // on how data-filter attributes should look.
     function sanitizeCategoryForDataAttr(categoryName) {
         if (typeof categoryName !== 'string') return '';
         return categoryName
             .toLowerCase()
-            .replace(/™/g, '') // Remove trademark
-            .replace(/ō/g, 'o') // Normalize o with macron
-            .replace(/\|/g, '-') // Replace pipe character (e.g. Yarrow|Pom)
-            .replace(/\+/g, 'plus') // Replace + with 'plus' (e.g. CP+)
-            .replace(/\s+/g, '-') // Replace spaces with hyphens
-            .replace(/[^a-z0-9-]/g, ''); // Remove any remaining non-alphanumeric except hyphens
+            .replace(/™/g, '')
+            .replace(/ō/g, 'o')
+            .replace(/\|/g, '-')
+            .replace(/\+/g, 'plus')
+            .replace(/&/g, 'and') // Example: For "Supplements & Nutrition" -> "supplements-and-nutrition"
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-]/g, '');
     }
 
-    // --- INITIALIZATION FOR PRODUCT INFO PAGES TAB (Categories dynamic, links static) ---
+    // --- INITIALIZATION FOR PRODUCT INFO PAGES TAB (Buttons & Links are now STATIC in HTML) ---
     function initializePipTab() {
         const pipPanel = document.getElementById('pips');
         if (!pipPanel) {
-            // console.log("PIP tab panel (id='pips') not found. Skipping PIP initialization.");
             return;
         }
 
-        const pipCategoryFiltersContainer = pipPanel.querySelector('#pipCategoryFilters');
-        const pipLinksGrid = pipPanel.querySelector('#pipLinksGrid'); // For checking if items exist
-
-        if (!pipCategoryFiltersContainer || !pipLinksGrid) {
-            // console.log("PIP category filter container or links grid not found. Cannot initialize PIP tab fully.");
+        const pipLinksGrid = pipPanel.querySelector('#pipLinksGrid');
+        if (!pipLinksGrid) {
             return;
         }
 
-        const uniqueDisplayCategoriesFromHtml = new Set();
-        const pipItemsInHtml = pipLinksGrid.querySelectorAll('.searchable-item');
+        // 1. PIP Category Filter Buttons are NOW STATIC IN HTML.
+        //    The generic "Category Filter Button Logic" below will find them and attach listeners.
+        //    No button generation needed here.
 
-        // Create a map from sanitized category to display name for correct ordering and display
-        // This is a bit more complex but ensures we use the original display names from officialPipCategoriesOrder
-        const categoryDisplayMap = {};
-        officialPipCategoriesOrder.forEach(displayName => {
-            if (displayName !== "All") {
-                categoryDisplayMap[sanitizeCategoryForDataAttr(displayName)] = displayName;
-            }
-        });
-
-        pipItemsInHtml.forEach(item => {
-            const sanitizedCat = item.getAttribute('data-category');
-            if (sanitizedCat && categoryDisplayMap[sanitizedCat]) {
-                uniqueDisplayCategoriesFromHtml.add(categoryDisplayMap[sanitizedCat]);
-            } else if (sanitizedCat) {
-                // Fallback: if a sanitized category in HTML isn't in our map,
-                // try to "de-sanitize" it for display (this is imperfect)
-                // Or, better, ensure all categories in HTML correspond to officialPipCategoriesOrder display names.
-                const somewhatDeSanitized = sanitizedCat.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()); // Basic de-sanitize
-                uniqueDisplayCategoriesFromHtml.add(somewhatDeSanitized);
-                // console.warn(`PIP item has data-category="${sanitizedCat}" which doesn't map to officialPipCategoriesOrder. Using: "${somewhatDeSanitized}"`);
-            }
-        });
-
-
-        const categoriesToDisplay = ["All"]; // Start with "All"
-        officialPipCategoriesOrder.forEach(officialCatDisplay => {
-            if (officialCatDisplay !== "All" && uniqueDisplayCategoriesFromHtml.has(officialCatDisplay)) {
-                categoriesToDisplay.push(officialCatDisplay);
-            }
-        });
-        // Add any categories found in HTML but not in official order (maintains all data filterable)
-        uniqueDisplayCategoriesFromHtml.forEach(htmlCatDisplay => {
-            if (!categoriesToDisplay.includes(htmlCatDisplay)) {
-                categoriesToDisplay.push(htmlCatDisplay);
-            }
-        });
-
-
-        pipCategoryFiltersContainer.innerHTML = ''; // Clear existing buttons
-        categoriesToDisplay.forEach(displayCategory => {
-            const button = document.createElement('button');
-            button.classList.add('category-filter-btn');
-            button.textContent = displayCategory; // Use the (potentially de-sanitized) display name
-            const filterValue = displayCategory === 'All' ? 'all' : sanitizeCategoryForDataAttr(displayCategory);
-            button.setAttribute('data-filter', filterValue);
-            if (displayCategory === 'All') {
-                button.classList.add('active');
-            }
-            pipCategoryFiltersContainer.appendChild(button);
-        });
-
-        // 2. PIP Links are now static in HTML.
-        //    Ensure the no-results message is initially set based on content.
+        // 2. PIP Links are static in HTML.
+        //    Ensure the no-results message is initially set correctly.
         const noResultsMessage = pipPanel.querySelector('.no-results-message');
         if (noResultsMessage) {
+            const pipItemsInHtml = pipLinksGrid.querySelectorAll('.searchable-item');
+            // Show "no results" only if the panel isn't the active one on load AND it's truly empty.
+            // If the panel is active, the filter logic (triggered by tab init) will handle the message.
             noResultsMessage.style.display = (pipItemsInHtml.length === 0 && !pipPanel.classList.contains('active')) ? 'block' : 'none';
-            // If the panel is active on load, the filter logic will handle this.
         }
+        // console.log("PIP Tab Initialized (Static Buttons & Links)");
     }
 
-    // CALL PIP INITIALIZATION EARLY (for dynamic category buttons)
+    // CALL PIP INITIALIZATION (might do very little now, but good for consistency)
     initializePipTab();
 
     // --- Tab Navigation Logic (for Resources page) ---
@@ -105,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainTabPanels = document.querySelectorAll('.tab-content-panels .tab-panel');
 
     if (mainTabButtons.length > 0 && mainTabPanels.length > 0) {
-        // Initial setup for tab panels
         mainTabPanels.forEach(panel => {
             if (!panel.classList.contains('active')) {
                 panel.style.display = 'none';
@@ -115,23 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const initialSearchInput = panel.querySelector('.tab-search-input');
                 if (initialSearchInput) {
                     initialSearchInput.dispatchEvent(new Event('input', { bubbles: true }));
-                } else {
+                } else { // If no search, try to "click" All category button
                     const catBar = panel.querySelector('.category-filter-bar');
                     const allBtn = catBar ? catBar.querySelector('.category-filter-btn[data-filter="all"]') : null;
                     if (allBtn) {
-                        // If this is the PIP tab and buttons were just generated, they might not have listeners yet.
-                        // The generic category filter logic below should attach them.
-                        // For non-PIP tabs or if buttons are static, this click is fine.
-                        if(panel.id !== 'pips' || allBtn.getAttribute('listener') === 'true') {
-                           allBtn.click();
-                        } else {
-                            // For PIPs tab, just ensure items are shown as "All" is default
-                            const itemsToFilter = panel.querySelectorAll('.resource-grid .searchable-item');
-                            const noResultsMessage = panel.querySelector('.no-results-message');
-                            let visibleItemsCount = 0;
-                            itemsToFilter.forEach(item => { item.style.display = ''; visibleItemsCount++; });
-                            if(noResultsMessage) noResultsMessage.style.display = (visibleItemsCount === 0) ? 'block' : 'none';
-                        }
+                        // Check if event listeners are attached before clicking
+                        // The 'listener' attribute was a temporary measure; a more robust check might be needed
+                        // if timing issues persist with dynamically vs. statically added buttons.
+                        // For fully static buttons, direct click should be fine.
+                        allBtn.click();
                     }
                 }
             }
@@ -159,19 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (currentSearchInput) {
                     currentSearchInput.value = '';
-                    currentSearchInput.dispatchEvent(new Event('input', { bubbles: true })); // Triggers search function
+                    currentSearchInput.dispatchEvent(new Event('input', { bubbles: true }));
                 } else if (currentCategoryFilterBar) {
-                    // If no search input, but there is a category bar, "click" the "All" button
                     const allButton = currentCategoryFilterBar.querySelector('.category-filter-btn[data-filter="all"]');
                     if (allButton && !allButton.classList.contains('active')) {
-                        allButton.click(); // This will trigger its own filter logic
+                        allButton.click();
                     } else if (allButton && allButton.classList.contains('active')) {
                         // If "All" is already active, and search was cleared (or no search input), ensure all items are visible
-                        const itemsToFilter = targetPanel.querySelectorAll('.resource-grid .searchable-item');
-                        const noResultsMessage = targetPanel.querySelector('.no-results-message');
-                        let visibleItemsCount = 0;
-                        itemsToFilter.forEach(item => { item.style.display = ''; visibleItemsCount++; });
-                        if(noResultsMessage) noResultsMessage.style.display = (visibleItemsCount === 0) ? 'block' : 'none';
+                        // This re-triggers the filter essentially.
+                        allButton.click();
                     }
                 }
             });
@@ -190,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const itemsToSearch = currentPanel.querySelectorAll('.resource-grid .searchable-item');
                 const noResultsMessage = currentPanel.querySelector('.no-results-message');
                 const activeCategoryFilterButton = currentPanel.querySelector('.category-filter-bar .category-filter-btn.active');
+                // Default to 'all' if no active category button is found (e.g., if category bar doesn't exist for a tab)
                 const categoryFilterValue = activeCategoryFilterButton ? activeCategoryFilterButton.getAttribute('data-filter') : 'all';
                 let visibleItemsCount = 0;
 
@@ -206,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
 
-                    const itemCategory = item.getAttribute('data-category'); // This should be the SANITIZED category
+                    const itemCategory = item.getAttribute('data-category');
                     const categoryMatchesFilter = (categoryFilterValue === 'all' || !itemCategory || itemCategory === categoryFilterValue);
 
                     if (textMatchesSearch && categoryMatchesFilter) {
@@ -225,34 +163,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Category Filter Button Logic (for Resources page) ---
-    // This needs to handle dynamically added buttons for the PIPs tab correctly.
-    // We can use event delegation on the categoryFilterBars or re-query buttons after PIP init.
-    // For now, let's assume querySelectorAll after init is sufficient if the timing is right.
     const categoryFilterBars = document.querySelectorAll('.category-filter-bar');
     if (categoryFilterBars.length > 0) {
         categoryFilterBars.forEach(bar => {
-            // Query buttons INSIDE the loop or use event delegation.
-            // This will pick up dynamically generated buttons IF initializePipTab has already run AND
-            // the #pipCategoryFilters container has the class .category-filter-bar
-            const filterButtons = bar.querySelectorAll('.category-filter-btn');
+            const filterButtons = bar.querySelectorAll('.category-filter-btn'); // Finds static & dynamic (if any)
             const panel = bar.closest('.tab-panel');
             
             filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
+                button.addEventListener('click', () => { // Event listener for ALL category filter buttons
                     const itemsToFilter = panel ? panel.querySelectorAll('.resource-grid .searchable-item') : [];
                     const noResultsMessage = panel ? panel.querySelector('.no-results-message') : null;
                     const mainSearchInput = panel ? panel.querySelector('.tab-search-input') : null;
 
-                    // Deactivate other buttons IN THIS BAR
                     bar.querySelectorAll('.category-filter-btn').forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
 
-                    const filterValue = button.getAttribute('data-filter'); // This is the SANITIZED value
+                    const filterValue = button.getAttribute('data-filter');
                     const searchTerm = mainSearchInput ? mainSearchInput.value.toLowerCase().trim() : '';
                     let visibleItemsCount = 0;
 
                     itemsToFilter.forEach(item => {
-                        const itemCategory = item.getAttribute('data-category'); // This is SANITIZED from HTML
+                        const itemCategory = item.getAttribute('data-category');
                         let textMatchesSearch = true;
                         if (searchTerm !== '') {
                             textMatchesSearch = false;
@@ -278,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                          noResultsMessage.style.display = (visibleItemsCount === 0 ) ? 'block' : 'none';
                     }
                 });
-                button.setAttribute('listener', 'true'); // Mark that listener is attached
+                // Removed: button.setAttribute('listener', 'true'); // No longer needed with this simplified init
             });
         });
     }
