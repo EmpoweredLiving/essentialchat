@@ -861,3 +861,110 @@ a.quick-link-anchor .searchable-text {
     border-radius: 8px; /* Optional: adds rounded corners to match your site's aesthetic */
     background-color: #f8f8f8; /* A light background color while the content loads */
 }
+
+/* Add this to the end of your styles.css file */
+
+/* ================================================== */
+/* ==== My Oil Cabinet (MOC) Hero Section Styles ==== */
+/* ================================================== */
+
+.moc-hero-section {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Space between text and image */
+    padding: 40px 30px; /* Padding inside the hero box */
+    background-color: #F9F8FC; /* Very light purple/gray background */
+    border-radius: 16px; /* Match your other container styles */
+    overflow: hidden;
+}
+
+.moc-text-content {
+    flex: 1; /* Takes up half the space */
+}
+
+.moc-image-content {
+    flex: 1; /* Takes up the other half */
+    text-align: center; /* Center the image within its column */
+}
+
+/* --- Text Styling --- */
+.moc-text-content h1 {
+    font-size: 3.2rem; /* Large, impactful headline */
+    font-weight: 700;
+    line-height: 1.2;
+    color: #3d3d3d; /* A dark, soft black */
+    margin-bottom: 20px;
+}
+
+.moc-gradient-text {
+    /* The magic for the gradient text */
+    background: linear-gradient(90deg, #226c7c, #034f60 120%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 800; /* Make it slightly bolder */
+}
+
+.moc-subtitle {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.moc-text-content p:not(.moc-subtitle) {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+/* --- Button Styling --- */
+.moc-cta-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #226c7c; /* Vibrant teal */
+    color: #fff;
+    padding: 16px 35px;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(50, 159, 165, 0.3);
+}
+
+.moc-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(50, 159, 165, 0.4);
+}
+
+/* --- Image Styling --- */
+.moc-image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* --- Responsive Adjustments for Mobile --- */
+@media (max-width: 900px) {
+    .moc-hero-section {
+        flex-direction: column; /* Stack columns vertically */
+        text-align: center; /* Center-align text */
+        gap: 35px;
+    }
+
+    .moc-text-content h1 {
+        font-size: 2.5rem; /* Slightly smaller headline on mobile */
+    }
+
+    .moc-cta-button {
+        width: 80%;
+        max-width: 300px; /* Ensure button isn't overly wide */
+    }
+
+    /* Put image on top on mobile for better flow */
+    .moc-image-content {
+        order: -1;
+    }
+}
