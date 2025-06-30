@@ -851,3 +851,13 @@ a.quick-link-anchor .searchable-text {
     position: relative;
 }
 .chatbot-iframe-wrapper iframe { display: block; width: 100%; height: 100%; border: none; }
+
+.webpage-embed-iframe {
+    display: block; /* Ensures proper block-level behavior */
+    width: 100%;    /* Fills the container's width */
+    height: 80vh;   /* Sets height to 80% of the viewport's (screen's) height */
+    min-height: 650px; /* Ensures it's not too short on smaller screens */
+    border: none;   /* Removes the default iframe border */
+    border-radius: 8px; /* Optional: adds rounded corners to match your site's aesthetic */
+    background-color: #f8f8f8; /* A light background color while the content loads */
+}
