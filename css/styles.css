@@ -413,7 +413,7 @@ ul {
     gap: 15px;
 }
 .tab-header h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--primary-accent);
     margin: 0;
     line-height: 1.2;
