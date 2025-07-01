@@ -526,10 +526,7 @@ a.quick-link-anchor { /* The <a> tag inside the quick-link-card */
     box-sizing: border-box;
     transition: color 0.2s ease;
 }
-/* The .searchable-text span for PIP names is inside this anchor */
-a.quick-link-anchor .searchable-text {
-    /* No specific styles needed here unless you want to change its display from default span */
-}
+
 
 .resource-card.quick-link-card:hover a.quick-link-anchor {
     color: var(--primary-accent) !important;
@@ -902,7 +899,7 @@ a.quick-link-anchor .searchable-text {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    --text-fill-color: transparent;
     font-weight: 800; /* Make it slightly bolder */
 }
 
