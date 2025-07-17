@@ -282,19 +282,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    // --- FIX FOR BROWSER EXTENSION INTERFERENCE ---
-    window.addEventListener('click', (event) => {
-        // Find the closest link element that was clicked
-        const linkElement = event.target.closest('a');
-
-        // Check if a link was actually clicked, if it has a URL, and if it's meant to open in a new tab
-        if (linkElement && linkElement.href && linkElement.target === '_blank') {
-            
-            // Stop the event from bubbling up to other listeners (like the Tango extension's)
-            event.stopImmediatePropagation();
-            
-            // Manually open the link in a new tab, since we stopped the default action
-            window.open(linkElement.href, '_blank');
-        }
-    }, true);
-}); // <-- Add this closing brace and parenthesis for DOMContentLoaded
+});
