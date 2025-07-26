@@ -360,24 +360,24 @@ ul {
 .tab-navigation {
     display: flex;
     flex-wrap: wrap;
-    padding: 10px 10px 0 10px;
+    padding: 6px 6px 0 6px;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 0;
 }
 
 .tab-button {
-    padding: 10px 14px;
+    padding: 6px 8px;
     cursor: pointer;
     background-color: transparent;
     border: none;
     border-bottom: 3px solid transparent;
     outline: none;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-subdued);
     position: relative;
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
-    margin-right: 5px;
+    margin-right: 3px;
     margin-bottom: -1px; /* Overlap for seamless active border */
 }
 .tab-button:last-child {
