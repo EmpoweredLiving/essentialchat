@@ -453,6 +453,227 @@ ul {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
 }
+/* Generic ebook Card Styling - Used by ebooks */
+/* ====== Ebook Card with Image ====== */
+.resource-card.ebook-card-with-image {
+    display: flex;
+    flex-direction: column; /* Title on top, body below */
+    gap: 12px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--casal-100);
+    box-shadow: 0 4px 12px rgba(var(--casal-900-rgb), 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.resource-card.ebook-card-with-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 22px rgba(var(--casal-900-rgb), 0.1);
+}
+
+/* ====== Title Styling ====== */
+.resource-card.ebook-card-with-image .ebook-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--casal-800);
+}
+
+/* ====== Body Wrapper (Image + Description) ====== */
+.resource-card.ebook-card-with-image .ebook-card-body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* ====== Image Styling ====== */
+.resource-card.ebook-card-with-image .ebook-card-img {
+    width: 110px !important;
+    height: 140px !important;
+    object-fit: cover;
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* ====== Content Area ====== */
+.resource-card.ebook-card-with-image .resource-card-content {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ====== Description Text ====== */
+.resource-card.ebook-card-with-image .resource-description {
+    margin: 0 0 12px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-subdued);
+}
+
+/* ====== Full-Width Button ====== */
+.resource-card.ebook-card-with-image .full-width-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* ====== Auto-Fix for Cards Without Images ====== */
+.resource-card.ebook-card-with-image .ebook-card-body:not(:has(img)) {
+    display: block; /* Make layout single-column if no image */
+}
+
+/* ====== Mobile Responsive ====== */
+@media (max-width: 768px) {
+    .resource-card.ebook-card-with-image .ebook-card-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .resource-card.ebook-card-with-image .ebook-card-img {
+        width: 80% !important;
+        height: auto !important;
+        margin-bottom: 10px;
+    }
+
+    .resource-card.ebook-card-with-image .resource-card-content {
+        align-items: center;
+    }
+
+    .resource-card.ebook-card-with-image .full-width-btn {
+        width: 100%;
+    }
+}
+
+/* ===========================
+   MAGAZINE CARD (standalone)
+   =========================== */
+.magazine-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* Center everything inside */
+  text-align: center;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--casal-100);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(var(--casal-900-rgb), 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.magazine-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 7px 22px rgba(var(--casal-900-rgb), 0.1);
+}
+
+/* Title styling */
+.magazine-card .magazine-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--casal-800);
+}
+
+/* Subtitle styling */
+.magazine-card .magazine-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-subdued);
+}
+
+/* Uniform cover frame (3:4) */
+.magazine-card .magazine-cover {
+  width: 140px;             /* Narrower for better 4-per-row layout */
+  aspect-ratio: 3 / 4;      /* Keeps uniform shape */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;            /* Center image inside frame */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make sure image fills frame */
+.magazine-card .magazine-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* was cover */
+  object-position: center;
+  display: block;
+  background: #f5f7f7;   /* optional: subtle backdrop behind letterboxing */
+}
+
+/* Full-width button */
+.magazine-card .magazine-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Magazine grid: 4 per row on desktop */
+.magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* Tablets: 2 per row */
+@media (max-width: 1024px) {
+  .magazine-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 600px) {
+  .magazine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make covers larger on mobile */
+  .magazine-card .magazine-cover {
+    width: min(75%, 220px);
+  }
+}
+
+/* Variant: card has NO title */
+.magazine-card.no-title .magazine-title {
+  display: none !important;            /* hide if present */
+}
+
+/* subtitle becomes the first line (optional) */
+.magazine-card.no-title .magazine-subtitle {
+  margin-top: 0;                       /* no gap above */
+  margin-bottom: 12px;                 /* space before image */
+}
+
+/* give the cover a bit more breathing room when no title */
+.magazine-card.no-title .magazine-cover {
+  margin-top: 20px;                    /* tune as desired */
+  margin-bottom: 18px;
+}
+
+/* Title but NO subtitle */
+.magazine-card.no-subtitle .magazine-subtitle,
+.magazine-card .magazine-subtitle:empty {
+  display: none !important;        /* hides if missing or empty */
+}
+
+.magazine-card.no-subtitle .magazine-title {
+  margin-bottom: 12px;             /* small gap under title */
+}
+
+.magazine-card.no-subtitle .magazine-cover {
+  margin-top: 20px;                /* extra breathing room above image */
+  margin-bottom: 18px;
+}
 
 /* Generic Resource Card Styling - Used by PIPs */
 .resource-card {
