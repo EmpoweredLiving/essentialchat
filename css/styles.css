@@ -617,6 +617,17 @@ ul {
   text-align: center;
 }
 
+/* Make the magazine card's button full width */
+.magazine-card a.btn,
+.magazine-card .resource-btn,
+.magazine-card .full-width-btn {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  align-self: stretch !important; /* overrides align-items:center on the card */
+  text-align: center;
+}
+
 /* Magazine grid: 4 per row on desktop */
 .magazine-grid {
   display: grid;
