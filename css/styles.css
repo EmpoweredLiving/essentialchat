@@ -623,9 +623,9 @@ ul {
 .magazine-card .full-width-btn {
   display: block !important;
   width: 100% !important;
-  max-width: none !important;
-  align-self: stretch !important; /* overrides align-items:center on the card */
+  align-self: stretch !important; /* beats align-items:center */
   text-align: center;
+  position: relative; z-index: 1; /* ensure nothing overlaps the tap */
 }
 
 /* Magazine grid: 4 per row on desktop */
@@ -1195,5 +1195,27 @@ a.quick-link-anchor { /* The <a> tag inside the quick-link-card */
     /* Put image on top on mobile for better flow */
     .moc-image-content {
         order: -1;
+    }
+
+    /* === MAGAZINE: clickability & full-width fix === */
+    .magazine-card .magazine-cover {
+    position: relative;     /* create a stacking context */
+    z-index: 0;             /* keep the cover below the button */
+    }
+
+    .magazine-card a.btn,
+    .magazine-card .resource-btn,
+    .magazine-card .full-width-btn {
+    display: block !important;
+    width: 100% !important;
+    align-self: stretch !important;
+    text-align: center;
+    position: relative;
+    z-index: 3;             /* ensure the button is on top */
+    }
+
+    /* Optional fallback if something still eats taps on very small screens */
+    @media (max-width: 600px) {
+    .magazine-card .magazine-cover { pointer-events: none; }
     }
 }
