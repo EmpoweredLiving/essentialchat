@@ -475,6 +475,7 @@ ul {
 
 /* ====== Title Styling ====== */
 .resource-card.ebook-card-with-image .ebook-title {
+    text-align: center;
     margin: 0;
     font-size: 1.15rem;
     font-weight: 600;
@@ -1196,26 +1197,37 @@ a.quick-link-anchor { /* The <a> tag inside the quick-link-card */
     .moc-image-content {
         order: -1;
     }
-
-    /* === MAGAZINE: clickability & full-width fix === */
-    .magazine-card .magazine-cover {
-    position: relative;     /* create a stacking context */
-    z-index: 0;             /* keep the cover below the button */
-    }
-
-    .magazine-card a.btn,
-    .magazine-card .resource-btn,
-    .magazine-card .full-width-btn {
-    display: block !important;
-    width: 100% !important;
-    align-self: stretch !important;
+}
+    /* === eBook card: NO DESCRIPTION — stack, center, grow image === */
+    .resource-card.ebook-card-with-image.no-description {
+    flex-direction: column !important;
+    align-items: center !important;
     text-align: center;
-    position: relative;
-    z-index: 3;             /* ensure the button is on top */
     }
 
-    /* Optional fallback if something still eats taps on very small screens */
-    @media (max-width: 600px) {
-    .magazine-card .magazine-cover { pointer-events: none; }
+    .resource-card.ebook-card-with-image.no-description .ebook-card-body {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center;
+    gap: 12px;
     }
+
+    .resource-card.ebook-card-with-image.no-description .resource-card-content {
+    display: none !important; /* hide the empty text column */
+    }
+
+    .resource-card.ebook-card-with-image.no-description .ebook-card-img {
+    width: 180px !important;     /* override the 110px from the base rule */
+    height: 240px !important;    /* keep ~3:4 aspect */
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    }
+
+    /* Optional tweak for very small screens */
+    @media (max-width: 600px) {
+    .resource-card.ebook-card-with-image.no-description .ebook-card-img {
+        width: min(70%, 220px) !important;
+        height: auto !important;
+  }
 }
