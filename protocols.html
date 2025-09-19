@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources - Pips | Essential Chats Resources</title>
+    <title>Resources - Protocols | Essential Chats Resources</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -17,7 +17,7 @@
             <div class="tabs-container">
                 <div class="tab-navigation">
                     <a href="/index.html" class="tab-button">eBooks</a>
-                    <a href="/links.html" class="tab-button active">Links</a>
+                    <a href="/links.html" class="tab-button">Links</a>
                     <a href="/blogs.html" class="tab-button">Blogs</a>
                     <a href="/pips.html" class="tab-button">PIPs</a>
                     <a href="/magazines.html" class="tab-button">Magazines</a>
@@ -27,10 +27,32 @@
                 </div>
             </div>
 
+            <!-- This SEPARATE div holds ALL the content panels as siblings -->
             <div class="tab-content-panels">
- 
+                <div id="protocols" class="tab-panel active">
+                    <div class="tab-header">
+                        <h2>Protocols</h2>
+                            <input type="search" class="tab-search-input" placeholder="Search protocols..."
+                            aria-label="Search Protocols">
+                    </div>
 
+                    <div class="resource-grid quick-links-grid">
+                        <div class="resource-card quick-link-card searchable-item">
+                            <a href="https://firebasestorage.googleapis.com/v0/b/essential-chat-v2-xxqjdq.firebasestorage.app/o/KnowledgeFiles%2FDayCleanseRestoreProtocol2025.pdf?alt=media&token=15e2ae24-80fd-4e18-9d40-bc2d6a33994e" 
+                            class="searchable-text quick-link-anchor" target="_blank">30-Day Cleanse & Restore</a>
+                        </div>
 
+                        <div class="resource-card quick-link-card searchable-item">
+                            <a href="https://firebasestorage.googleapis.com/v0/b/essential-chat-v2-xxqjdq.firebasestorage.app/o/KnowledgeFiles%2FFullLymeProtocol2025.pdf?alt=media&token=0e1d7ab3-5977-4c81-9953-aed38aa5c776"
+                            class="searchable-text quick-link-anchor" target="_blank">Tick-Borne Wellness</a>
+                        </div>
+
+                        <div class="resource-card quick-link-card searchable-item">
+                            <a href="https://firebasestorage.googleapis.com/v0/b/essential-chat-v2-xxqjdq.firebasestorage.app/o/KnowledgeFiles%2FCancerProtocolTextFile2025.pdf?alt=media&token=6b02fe61-5953-415b-a233-d90f64b4d95c"
+                            class="searchable-text quick-link-anchor" target="_blank">Cellular Health</a>
+                        </div>
+                    </div>
+                    
                     <p class="no-results-message" style="display:none;">No links found.</p>
                 </div><!-- Closes the protocols panel -->
             </div> <!-- End of tab content panel -->

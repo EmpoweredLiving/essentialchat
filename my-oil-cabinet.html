@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Pips | Essential Chats Resources</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <main class="main-content resources-page">
+        <div class="container">
+
+            <!-- This div holds ONLY the navigation buttons -->
+            <div class="tabs-container">
+                <div class="tab-navigation">
+                    <a href="/index.html" class="tab-button">eBooks</a>
+                    <a href="/links.html" class="tab-button">Links</a>
+                    <a href="/blogs.html" class="tab-button">Blogs</a>
+                    <a href="/pips.html" class="tab-button">PIPs</a>
+                    <a href="/magazines.html" class="tab-button">Magazines</a>
+                    <a href="/guides.html" class="tab-button">Guides</a>
+                    <a href="/protocols.html" class="tab-button">Protocols</a>
+                    <a href="/my-oil-cabinet.html" class="tab-button">My Oil Cabinet</a>
+                </div>
+            </div>
+
+            <div class="tab-content-panels">
+                <!-- Quick Links Tab Panel -->
+                <div id="moc2" class="tab-panel active">
+                    <div class="tab-header">
+                        <h2>My Oil Cabinet</h2>
+                    </div>
+                    <!-- This parent container creates the two-column layout -->
+                    <div class="moc-hero-section-v2">
+
+                        <!-- ===== Left Column: Text Content ===== -->
+                        <div class="moc-text-content-v2">
+                            <div class="tab-header">
+                                <h2>The serenity of a <strong>Perfectly Organized</strong> oil collection.</h2>
+                            </div>
+                            <h3 class="moc-subtitle"><strong>Get 1 year free</strong> with an <i>annual</i> subscription
+                                to Essential Chats.</h3>
+                            <p>Turn your dōTERRA chaos into calming clarity using My Oil Cabinet. Stop wasting money,
+                                find what you need instantly, and rediscover the joy of your collection!</p>
+                            <br>
+                            <div class="resource-grid quick-links-grid">
+                                <div class="resource-card quick-link-card searchable-item">
+                                    <a href="https://essentialchatsapp.com/myoilcabinet"
+                                        class="searchable-text quick-link-anchor" target="_blank">What's hiding in your
+                                        cabinet? Click to learn more!</a>
+                                </div>
+                                <br><br>
+
+                            </div><!-- Closes the hero section -->
+                            <div class="moc-image-content">
+                                <img src="images/myoilcabinet.webp"
+                                    alt="My Oil Cabinet app shown on desktop, tablet, and mobile screens.">
+                            </div>
+                        </div><!-- Closes the MOC content -->
+                    </div><!-- End of MOC hero section -->
+                </div><!-- Closes the protocols panel -->
+            </div> <!-- End of tab content panel -->
+        </div> <!-- End of container -->
+    </main> <!-- End of main content -->
+
+
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const downloadLinks = document.querySelectorAll('.resource-card a, .quick-link-card a');
+            downloadLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (window.FlutterFlowDownloader) {
+                        window.FlutterFlowDownloader.postMessage(this.href);
+                    } else {
+                        console.log('FlutterFlowDownloader channel not found. Opening link in a new tab.');
+                        window.open(this.href, '_blank');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
